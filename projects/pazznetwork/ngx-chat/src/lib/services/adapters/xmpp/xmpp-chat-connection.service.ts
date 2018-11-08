@@ -27,7 +27,7 @@ export class XmppChatConnectionService {
      */
     public userJid: JID;
     private iqId = new Date().getTime();
-    private iqStanzaResponseCallbacks: { [key: string]: ((any) => void) } = {};
+    private iqStanzaResponseCallbacks: { [key: string]: ((arg: any) => void) } = {};
 
     constructor(@Inject(XmppClientToken) public client: Client,
                 private logService: LogService) {}
@@ -90,9 +90,9 @@ export class XmppChatConnectionService {
         });
     }
 
-    public sendIqAckResult(id) {
+    public sendIqAckResult(id: string) {
         this.send(
-            xml('iq', {from: this.userJid.toString(), id: id, type: 'result'})
+            xml('iq', {from: this.userJid.toString(), id, type: 'result'})
         );
     }
 
