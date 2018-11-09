@@ -25,7 +25,6 @@ import {
     MultiUserChatPlugin,
     PublishSubscribePlugin,
     PushPlugin,
-    RegistrationPlugin,
     RosterPlugin,
     ServiceDiscoveryPlugin
 } from './services/adapters/xmpp/plugins';
@@ -114,7 +113,7 @@ export class NgxChatModule {
             new ServiceDiscoveryPlugin(xmppChatAdapter),
             new PushPlugin(xmppChatAdapter),
             new PingPlugin(xmppChatAdapter),
-            new RegistrationPlugin(logService),
+            // new RegistrationPlugin(logService),
         ]);
 
         return xmppChatAdapter;

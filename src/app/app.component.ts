@@ -8,7 +8,6 @@ import {
     LogLevel,
     LogService,
     MultiUserChatPlugin,
-    RegistrationPlugin,
 } from './ngx-chat-imports';
 
 @Component({
@@ -61,12 +60,14 @@ export class AppComponent {
     async onRegister() {
         this.registrationMessage = 'registering ...';
         try {
+            /*
             await this.chatService.getPlugin(RegistrationPlugin).register(
                 this.username,
                 this.password,
                 this.service,
                 this.domain
             );
+            */
             this.registrationMessage = 'registration successful';
         } catch (e) {
             this.registrationMessage = 'registration failed: ' + e.toString();
