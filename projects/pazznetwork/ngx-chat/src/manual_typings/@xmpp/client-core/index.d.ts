@@ -12,6 +12,8 @@ declare module '@xmpp/client-core' {
 
         public startOptions: StartOptions;
 
+        public plugins: any;
+
         public on(eventName: string, callback: any): void;
 
         public handle(eventName: string, callback: any): void;

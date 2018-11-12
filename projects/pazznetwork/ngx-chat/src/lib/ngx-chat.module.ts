@@ -3,6 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Client } from '@xmpp/client-core';
 import bind from '@xmpp/plugins/bind';
+import reconnect from '@xmpp/plugins/reconnect';
 import plain from '@xmpp/plugins/sasl-plain';
 import sessionEstablishment from '@xmpp/plugins/session-establishment';
 import websocket from '@xmpp/plugins/websocket';
@@ -25,6 +26,7 @@ import {
     MultiUserChatPlugin,
     PublishSubscribePlugin,
     PushPlugin,
+    RegistrationPlugin,
     RosterPlugin,
     ServiceDiscoveryPlugin
 } from './services/adapters/xmpp/plugins';
@@ -113,7 +115,7 @@ export class NgxChatModule {
             new ServiceDiscoveryPlugin(xmppChatAdapter),
             new PushPlugin(xmppChatAdapter),
             new PingPlugin(xmppChatAdapter),
-            // new RegistrationPlugin(logService),
+            new RegistrationPlugin(logService),
         ]);
 
         return xmppChatAdapter;
@@ -128,6 +130,7 @@ export class NgxChatModule {
     private static client() {
         const client = new Client();
         client.plugin(bind);
+        client.plugin(reconnect);
         client.plugin(plain);
         client.plugin(sessionEstablishment);
         client.plugin(websocket);

@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { jid } from '@xmpp/jid';
 import { Observable, of } from 'rxjs';
 import {
     ChatService,
@@ -8,6 +9,7 @@ import {
     LogLevel,
     LogService,
     MultiUserChatPlugin,
+    RegistrationPlugin,
 } from './ngx-chat-imports';
 
 @Component({
@@ -60,14 +62,12 @@ export class AppComponent {
     async onRegister() {
         this.registrationMessage = 'registering ...';
         try {
-            /*
             await this.chatService.getPlugin(RegistrationPlugin).register(
-                this.username,
+                jid(this.jid).local,
                 this.password,
-                this.service,
+                this.uri,
                 this.domain
             );
-            */
             this.registrationMessage = 'registration successful';
         } catch (e) {
             this.registrationMessage = 'registration failed: ' + e.toString();
